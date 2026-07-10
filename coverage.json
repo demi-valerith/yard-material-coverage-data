@@ -1,0 +1,33 @@
+{
+  "name": "Yard Material Coverage Data",
+  "source": "https://yardmaterialtools.com/material-coverage-chart",
+  "updated": "2026-07-10",
+  "unitSystem": "US customary",
+  "coverageByDepth": [
+    { "depthInches": 1, "squareFeetPerCubicYard": 324 },
+    { "depthInches": 2, "squareFeetPerCubicYard": 162 },
+    { "depthInches": 3, "squareFeetPerCubicYard": 108 },
+    { "depthInches": 4, "squareFeetPerCubicYard": 81 },
+    { "depthInches": 6, "squareFeetPerCubicYard": 54 },
+    { "depthInches": 12, "squareFeetPerCubicYard": 27 }
+  ],
+  "tonsPerCubicYard": [
+    { "material": "Pea gravel", "minimum": 1.25, "maximum": 1.4 },
+    { "material": "Crushed stone", "minimum": 1.35, "maximum": 1.55 },
+    { "material": "River rock", "minimum": 1.35, "maximum": 1.6 },
+    { "material": "Topsoil", "minimum": 0.9, "maximum": 1.3 },
+    { "material": "Compost", "minimum": 0.45, "maximum": 0.8 },
+    { "material": "Mulch", "minimum": 0.25, "maximum": 0.5 },
+    { "material": "Sand", "minimum": 1.25, "maximum": 1.5 },
+    { "material": "Fill dirt", "minimum": 1.0, "maximum": 1.4 }
+  ],
+  "bagsPerCubicYard": [
+    { "bagCubicFeet": 0.5, "bags": 54 },
+    { "bagCubicFeet": 0.75, "bags": 36 },
+    { "bagCubicFeet": 1, "bags": 27 },
+    { "bagCubicFeet": 1.5, "bags": 18 },
+    { "bagCubicFeet": 2, "bags": 14 },
+    { "bagCubicFeet": 3, "bags": 9 }
+  ],
+  "disclaimer": "Planning estimates only. Supplier density, moisture, compaction, gradation, and bag fill vary."
+}

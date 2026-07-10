@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://demi-valerith.github.io/yard-material-coverage-data/sitemap.xml

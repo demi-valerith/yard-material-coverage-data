@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this dataset, cite Yard Material Tools and link to the source chart."
+title: "Yard Material Coverage Data"
+type: dataset
+authors:
+  - name: "Yard Material Tools"
+url: "https://yardmaterialtools.com/material-coverage-chart"
+repository-code: "https://github.com/demi-valerith/yard-material-coverage-data"
+license: CC-BY-4.0
+date-released: 2026-07-10

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Yard Material Coverage Data | Cubic Yards, Tons &amp; Bags</title>
+    <meta name="description" content="Open yard material coverage data for cubic-yard coverage by depth, typical tons per yard, and bags per cubic yard.">
+    <link rel="canonical" href="https://demi-valerith.github.io/yard-material-coverage-data/">
+    <style>
+      :root { color-scheme: light; font-family: system-ui, sans-serif; color: #16211d; background: #f5f6f2; }
+      body { margin: 0; }
+      main { width: min(900px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 72px; }
+      h1 { max-width: 760px; font-size: clamp(2rem, 6vw, 3.5rem); line-height: 1.05; }
+      h2 { margin-top: 40px; }
+      p, li { max-width: 760px; line-height: 1.65; }
+      a { color: #075f4a; }
+      .downloads { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+      .downloads a { border: 1px solid #7b8d84; padding: 10px 14px; text-decoration: none; }
+      .table-wrap { overflow-x: auto; }
+      table { width: 100%; border-collapse: collapse; background: #fff; }
+      th, td { border: 1px solid #c9d0cc; padding: 10px 12px; text-align: left; }
+      th { background: #e8ece8; }
+      .note { border-left: 4px solid #9a5e2d; padding-left: 16px; }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Dataset",
+        "name": "Yard Material Coverage Data",
+        "description": "Planning data for cubic-yard coverage by depth, typical tons per cubic yard, and bags per cubic yard.",
+        "url": "https://demi-valerith.github.io/yard-material-coverage-data/",
+        "isBasedOn": "https://yardmaterialtools.com/material-coverage-chart",
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "dateModified": "2026-07-10",
+        "distribution": [
+          { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://demi-valerith.github.io/yard-material-coverage-data/coverage.json" },
+          { "@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://demi-valerith.github.io/yard-material-coverage-data/coverage.csv" }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <p>Open reference dataset</p>
+      <h1>Yard material coverage data</h1>
+      <p>Reusable planning values for calculators, supplier resource pages, garden worksheets, and educational examples. The data covers cubic-yard coverage by depth, typical material weights, and common bag conversions.</p>
+      <div class="downloads">
+        <a href="coverage.json">Download JSON</a>
+        <a href="coverage.csv">Download CSV</a>
+        <a href="https://github.com/demi-valerith/yard-material-coverage-data">View repository</a>
+      </div>
+
+      <h2>Cubic yard coverage by depth</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Depth</th><th>Square feet per cubic yard</th></tr></thead>
+          <tbody>
+            <tr><td>1 inch</td><td>324 sq ft</td></tr>
+            <tr><td>2 inches</td><td>162 sq ft</td></tr>
+            <tr><td>3 inches</td><td>108 sq ft</td></tr>
+            <tr><td>4 inches</td><td>81 sq ft</td></tr>
+            <tr><td>6 inches</td><td>54 sq ft</td></tr>
+            <tr><td>12 inches</td><td>27 sq ft</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>Formula:</strong> square feet covered by one cubic yard equals 324 divided by depth in inches.</p>
+
+      <h2>Typical tons per cubic yard</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Material</th><th>Planning range</th></tr></thead>
+          <tbody>
+            <tr><td>Pea gravel</td><td>1.25-1.4 tons</td></tr>
+            <tr><td>Crushed stone</td><td>1.35-1.55 tons</td></tr>
+            <tr><td>River rock</td><td>1.35-1.6 tons</td></tr>
+            <tr><td>Topsoil</td><td>0.9-1.3 tons</td></tr>
+            <tr><td>Compost</td><td>0.45-0.8 tons</td></tr>
+            <tr><td>Mulch</td><td>0.25-0.5 tons</td></tr>
+            <tr><td>Sand</td><td>1.25-1.5 tons</td></tr>
+            <tr><td>Fill dirt</td><td>1.0-1.4 tons</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Project calculators and source</h2>
+      <p>The complete reference, printable chart, assumptions, and calculator links are maintained in the <a href="https://yardmaterialtools.com/material-coverage-chart">Yard Material Coverage Chart</a>.</p>
+      <ul>
+        <li><a href="https://yardmaterialtools.com/gravel-calculator">Estimate gravel yards, tons, bags, and cost</a></li>
+        <li><a href="https://yardmaterialtools.com/top-soil-calculator">Estimate topsoil volume and bags</a></li>
+        <li><a href="https://yardmaterialtools.com/mulch-calculator">Estimate mulch coverage and bags</a></li>
+        <li><a href="https://yardmaterialtools.com/cubic-yards-to-tons-calculator">Convert cubic yards to tons by material</a></li>
+      </ul>
+      <p class="note">Planning estimates only. Supplier density, moisture, compaction, gradation, and bag fill vary. Confirm local material specifications before ordering.</p>
+    </main>
+  </body>
+</html>

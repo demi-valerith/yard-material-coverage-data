@@ -20,6 +20,7 @@ gradation, compaction, bag fill, and supplier measurements vary.
 - [`bag-conversions.csv`](bag-conversions.csv) - common bag counts per cubic yard
 - [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md) - field definitions and units
 - [`METHODOLOGY.md`](METHODOLOGY.md) - formulas, provenance, rounding, and limitations
+- [`CHECKSUMS.txt`](CHECKSUMS.txt) - SHA-256 checksums for release files
 - [`index.html`](index.html) - public reference page for GitHub Pages
 
 ## Formula

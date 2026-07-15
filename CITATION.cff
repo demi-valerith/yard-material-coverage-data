@@ -9,6 +9,9 @@ version: 1.1.0
 url: "https://yardmaterialtools.com/material-coverage-chart"
 repository-code: "https://github.com/demi-valerith/yard-material-coverage-data"
 license: CC-BY-4.0
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21370505"
 keywords:
   - yard materials
   - cubic yards
@@ -18,3 +21,12 @@ keywords:
   - mulch
   - topsoil
 date-released: 2026-07-15
+preferred-citation:
+  type: dataset
+  title: "Yard Material Coverage Data"
+  authors:
+    - name: "Yard Material Tools"
+  version: 1.1.0
+  doi: "10.5281/zenodo.21370505"
+  url: "https://doi.org/10.5281/zenodo.21370505"
+  year: 2026

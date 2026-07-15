@@ -1,5 +1,7 @@
 # Yard Material Coverage Data
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21370505.svg)](https://doi.org/10.5281/zenodo.21370505)
+
 Version 1.1.0
 
 Open planning data for common yard and landscape materials:
@@ -50,4 +52,12 @@ dataset to Yard Material Tools and link to the source chart when republishing it
 ## Citation
 
 Use the repository's [`CITATION.cff`](CITATION.cff) metadata when citing a specific
-release. A persistent Zenodo DOI will be added after version 1.1.0 is archived.
+release.
+
+- Version 1.1.0 DOI: <https://doi.org/10.5281/zenodo.21370505>
+- All-version concept DOI: <https://doi.org/10.5281/zenodo.21370504>
+
+Suggested citation:
+
+> Yard Material Tools. (2026). Yard Material Coverage Data (Version 1.1.0)
+> [Data set]. Zenodo. https://doi.org/10.5281/zenodo.21370505

@@ -1,0 +1,31 @@
+{
+  "title": "Yard Material Coverage Data",
+  "description": "Open planning data for cubic-yard coverage by depth, typical tons-per-cubic-yard ranges for common yard materials, and bag-to-cubic-yard conversions. The release includes machine-readable JSON and CSV files, a data dictionary, and a methodology and limitations statement.",
+  "creators": [
+    {
+      "name": "Yard Material Tools"
+    }
+  ],
+  "version": "1.1.0",
+  "publication_date": "2026-07-15",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "upload_type": "dataset",
+  "language": "eng",
+  "keywords": [
+    "yard materials",
+    "cubic yards",
+    "material coverage",
+    "landscape planning",
+    "gravel",
+    "mulch",
+    "topsoil"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://yardmaterialtools.com/material-coverage-chart",
+      "relation": "isSupplementTo",
+      "resource_type": "dataset"
+    }
+  ]
+}

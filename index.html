@@ -28,13 +28,16 @@
         "@type": "Dataset",
         "name": "Yard Material Coverage Data",
         "description": "Planning data for cubic-yard coverage by depth, typical tons per cubic yard, and bags per cubic yard.",
+        "version": "1.1.0",
         "url": "https://demi-valerith.github.io/yard-material-coverage-data/",
         "isBasedOn": "https://yardmaterialtools.com/material-coverage-chart",
         "license": "https://creativecommons.org/licenses/by/4.0/",
-        "dateModified": "2026-07-10",
+        "dateModified": "2026-07-15",
         "distribution": [
           { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://demi-valerith.github.io/yard-material-coverage-data/coverage.json" },
-          { "@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://demi-valerith.github.io/yard-material-coverage-data/coverage.csv" }
+          { "@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://demi-valerith.github.io/yard-material-coverage-data/coverage.csv" },
+          { "@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://demi-valerith.github.io/yard-material-coverage-data/material-density.csv" },
+          { "@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://demi-valerith.github.io/yard-material-coverage-data/bag-conversions.csv" }
         ]
       }
     </script>
@@ -43,10 +46,12 @@
     <main>
       <p>Open reference dataset</p>
       <h1>Yard material coverage data</h1>
-      <p>Reusable planning values for calculators, supplier resource pages, garden worksheets, and educational examples. The data covers cubic-yard coverage by depth, typical material weights, and common bag conversions.</p>
+      <p>Version 1.1.0. Reusable planning values for calculators, supplier resource pages, garden worksheets, and educational examples. The data covers cubic-yard coverage by depth, typical material weights, and common bag conversions.</p>
       <div class="downloads">
         <a href="coverage.json">Download JSON</a>
-        <a href="coverage.csv">Download CSV</a>
+        <a href="coverage.csv">Coverage CSV</a>
+        <a href="material-density.csv">Density CSV</a>
+        <a href="bag-conversions.csv">Bag CSV</a>
         <a href="https://github.com/demi-valerith/yard-material-coverage-data">View repository</a>
       </div>
 

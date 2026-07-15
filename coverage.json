@@ -1,7 +1,9 @@
 {
   "name": "Yard Material Coverage Data",
+  "version": "1.1.0",
   "source": "https://yardmaterialtools.com/material-coverage-chart",
-  "updated": "2026-07-10",
+  "methodology": "https://github.com/demi-valerith/yard-material-coverage-data/blob/main/METHODOLOGY.md",
+  "updated": "2026-07-15",
   "unitSystem": "US customary",
   "coverageByDepth": [
     { "depthInches": 1, "squareFeetPerCubicYard": 324 },

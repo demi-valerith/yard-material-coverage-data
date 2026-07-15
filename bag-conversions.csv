@@ -1,0 +1,7 @@
+bag_cubic_feet,bags_per_cubic_yard,rounding
+0.5,54,exact
+0.75,36,exact
+1,27,exact
+1.5,18,exact
+2,14,rounded_up_from_13.5
+3,9,exact

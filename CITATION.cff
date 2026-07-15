@@ -4,7 +4,17 @@ title: "Yard Material Coverage Data"
 type: dataset
 authors:
   - name: "Yard Material Tools"
+abstract: "Open planning data for cubic-yard coverage by depth, typical material density ranges, and common bag conversions for yard and landscape materials."
+version: 1.1.0
 url: "https://yardmaterialtools.com/material-coverage-chart"
 repository-code: "https://github.com/demi-valerith/yard-material-coverage-data"
 license: CC-BY-4.0
-date-released: 2026-07-10
+keywords:
+  - yard materials
+  - cubic yards
+  - material coverage
+  - landscape planning
+  - gravel
+  - mulch
+  - topsoil
+date-released: 2026-07-15

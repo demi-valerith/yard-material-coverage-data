@@ -1,0 +1,54 @@
+{
+  "name": "@demi-valerith/yard-material-coverage-data",
+  "version": "1.1.0",
+  "description": "Open cubic-yard coverage, material density, and bag conversion data for landscape planning.",
+  "type": "module",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.js",
+      "default": "./index.js"
+    },
+    "./coverage.json": "./coverage.json"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "coverage.json",
+    "coverage.csv",
+    "material-density.csv",
+    "bag-conversions.csv",
+    "DATA_DICTIONARY.md",
+    "METHODOLOGY.md",
+    "LICENSE.md",
+    "CITATION.cff"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20.10"
+  },
+  "sideEffects": false,
+  "license": "CC-BY-4.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demi-valerith/yard-material-coverage-data.git"
+  },
+  "homepage": "https://yardmaterialtools.com/material-coverage-chart",
+  "bugs": "https://github.com/demi-valerith/yard-material-coverage-data/issues",
+  "keywords": [
+    "landscaping",
+    "yard-calculator",
+    "cubic-yards",
+    "gravel",
+    "topsoil",
+    "mulch",
+    "open-data"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

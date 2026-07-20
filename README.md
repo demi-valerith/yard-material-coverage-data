@@ -14,6 +14,30 @@ The files are intended for calculators, supplier resource pages, garden-planning
 worksheets, and educational examples. Values are planning estimates; moisture,
 gradation, compaction, bag fill, and supplier measurements vary.
 
+## Install
+
+```sh
+npm install @demi-valerith/yard-material-coverage-data
+```
+
+```js
+import coverageData, {
+  cubicYardsRequired,
+  findMaterialDensity,
+  squareFeetPerCubicYard,
+} from "@demi-valerith/yard-material-coverage-data";
+
+squareFeetPerCubicYard(3); // 108
+cubicYardsRequired(500, 3); // 4.6296...
+findMaterialDensity("pea gravel"); // { minimum: 1.25, maximum: 1.4, ... }
+console.log(coverageData.bagsPerCubicYard);
+```
+
+The package is an ESM module and includes TypeScript declarations. The versioned
+JSON file is also available without installation from jsDelivr:
+
+<https://cdn.jsdelivr.net/npm/@demi-valerith/yard-material-coverage-data@1.1.0/coverage.json>
+
 ## Files
 
 - [`coverage.json`](coverage.json) - structured coverage, density, and bag-size data

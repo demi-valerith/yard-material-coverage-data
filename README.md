@@ -38,6 +38,26 @@ JSON file is also available without installation from jsDelivr:
 
 <https://cdn.jsdelivr.net/npm/@demi-valerith/yard-material-coverage-data@1.1.0/coverage.json>
 
+## Embeddable coverage widget
+
+Add the calculator to a supplier resource page, landscaping article, or project guide:
+
+```html
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/npm/@demi-valerith/yard-material-coverage-data@1.2.0/widget.js"
+></script>
+<yard-material-coverage
+  material="Pea gravel"
+  area="500"
+  depth="3"
+></yard-material-coverage>
+```
+
+The `material`, `area`, and `depth` attributes set the initial values. The widget is
+responsive, has no runtime dependencies, and calculates cubic yards plus a typical
+tons range. Its source link lets readers open the full chart and project calculators.
+
 ## Files
 
 - [`coverage.json`](coverage.json) - structured coverage, density, and bag-size data

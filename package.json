@@ -1,6 +1,6 @@
 {
   "name": "@demi-valerith/yard-material-coverage-data",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Open cubic-yard coverage, material density, and bag conversion data for landscape planning.",
   "type": "module",
   "main": "./index.js",
@@ -30,7 +30,8 @@
     "DATA_DICTIONARY.md",
     "METHODOLOGY.md",
     "LICENSE.md",
-    "CITATION.cff"
+    "CITATION.cff",
+    "examples"
   ],
   "scripts": {
     "test": "node --test"
@@ -41,7 +42,7 @@
   "sideEffects": [
     "./widget.js"
   ],
-  "license": "CC-BY-4.0",
+  "license": "SEE LICENSE IN LICENSE.md",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/demi-valerith/yard-material-coverage-data.git"

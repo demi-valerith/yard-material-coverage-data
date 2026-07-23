@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21370505.svg)](https://doi.org/10.5281/zenodo.21370505)
 
-Version 1.1.0
+Dataset version 1.1.0. Package and widget version 1.3.0.
 
 Open planning data for common yard and landscape materials:
 
@@ -45,18 +45,45 @@ Add the calculator to a supplier resource page, landscaping article, or project 
 ```html
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/npm/@demi-valerith/yard-material-coverage-data@1.2.0/widget.js"
+  src="https://cdn.jsdelivr.net/npm/@demi-valerith/yard-material-coverage-data@1.3.0/widget.js"
 ></script>
 <yard-material-coverage
   material="Pea gravel"
+  materials="Pea gravel,Crushed stone,River rock"
   area="500"
   depth="3"
+  unit="imperial"
+  accent="#ab4c29"
+  attribution="visible"
+  utm-source="supplier_site"
+  utm-campaign="coverage_widget"
 ></yard-material-coverage>
 ```
 
-The `material`, `area`, and `depth` attributes set the initial values. The widget is
-responsive, has no runtime dependencies, and calculates cubic yards plus a typical
-tons range. Its source link lets readers open the full chart and project calculators.
+The widget is responsive, dependency-free, and supports:
+
+- `material`: initial material name or hyphenated slug;
+- `materials`: comma-separated material allowlist;
+- `area` and `depth`: initial positive numeric values;
+- `unit`: `imperial` for square feet, inches, cubic yards, and short tons, or
+  `metric` for square meters, centimeters, cubic meters, and metric tonnes;
+- `accent`: six-digit hexadecimal result accent color;
+- `attribution`: `visible` by default or `hidden`;
+- `utm-source` and `utm-campaign`: bounded identifiers added to the optional
+  source link.
+
+See the runnable [plain HTML, React, Astro, and WordPress examples](examples/).
+
+### Privacy and attribution
+
+The package performs no analytics, storage, cookies, or background network
+requests. When attribution is visible, UTM parameters are transmitted only if a
+visitor clicks the source link.
+
+The source link is optional for the MIT-licensed widget code. Republishing the
+CC BY 4.0 dataset or its documentation still requires appropriate credit and a
+link to the source chart. The WordPress plugin keeps public attribution opt-in
+to comply with WordPress.org directory rules.
 
 ## Files
 
@@ -90,8 +117,8 @@ Useful project tools:
 
 ## License
 
-Data and documentation are available under [CC BY 4.0](LICENSE.md). Attribute the
-dataset to Yard Material Tools and link to the source chart when republishing it.
+Data and documentation are available under CC BY 4.0. JavaScript, TypeScript
+declarations, tests, and examples are available under MIT. See [LICENSE.md](LICENSE.md).
 
 ## Citation
 

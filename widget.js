@@ -1,5 +1,9 @@
+// SPDX-License-Identifier: MIT
+
 const TAG_NAME = "yard-material-coverage";
 const SOURCE_URL = "https://yardmaterialtools.com/material-coverage-chart";
+const CUBIC_METERS_TO_CUBIC_YARDS = 1.3079506193;
+const SHORT_TONS_TO_METRIC_TONNES = 0.90718474;
 
 export const MATERIALS = Object.freeze([
   { name: "Pea gravel", minimum: 1.25, maximum: 1.4 },
@@ -12,32 +16,90 @@ export const MATERIALS = Object.freeze([
   { name: "Fill dirt", minimum: 1, maximum: 1.4 },
 ]);
 
-export function estimateMaterial({ material, area, depth }) {
-  const normalizedMaterial = typeof material === "string" ? material.trim().toLowerCase() : "";
-  const density = MATERIALS.find((entry) => entry.name.toLowerCase() === normalizedMaterial);
-  const squareFeet = Number(area);
-  const depthInches = Number(depth);
+function normalizeMaterialName(value) {
+  return typeof value === "string" ? value.trim().toLowerCase().replaceAll("-", " ") : "";
+}
+
+export function normalizeUnit(value) {
+  return typeof value === "string" && value.trim().toLowerCase() === "metric" ? "metric" : "imperial";
+}
+
+export function filterMaterials(value) {
+  if (typeof value !== "string" || value.trim() === "") return MATERIALS;
+
+  const requested = new Set(value.split(",").map(normalizeMaterialName).filter(Boolean));
+  const filtered = MATERIALS.filter((entry) => requested.has(normalizeMaterialName(entry.name)));
+  return filtered.length > 0 ? Object.freeze(filtered) : MATERIALS;
+}
+
+export function sanitizeAccent(value) {
+  return typeof value === "string" && /^#[0-9a-f]{6}$/i.test(value.trim()) ? value.trim() : "#ab4c29";
+}
+
+function sanitizeCampaignValue(value, fallback) {
+  const normalized = typeof value === "string" ? value.trim() : "";
+  return /^[a-z0-9][a-z0-9_-]{0,49}$/i.test(normalized) ? normalized : fallback;
+}
+
+export function buildSourceUrl({ source, campaign } = {}) {
+  const url = new URL(SOURCE_URL);
+  url.searchParams.set("utm_source", sanitizeCampaignValue(source, "embedded_widget"));
+  url.searchParams.set("utm_medium", "referral");
+  url.searchParams.set("utm_campaign", sanitizeCampaignValue(campaign, "coverage_widget"));
+  return url.toString();
+}
+
+export function estimateMaterial({ material, area, depth, unit = "imperial" }) {
+  const density = MATERIALS.find(
+    (entry) => normalizeMaterialName(entry.name) === normalizeMaterialName(material),
+  );
+  const numericArea = Number(area);
+  const numericDepth = Number(depth);
+  const normalizedUnit = normalizeUnit(unit);
 
   if (!density) throw new TypeError("material must match a supported material");
-  if (!Number.isFinite(squareFeet) || squareFeet <= 0) {
+  if (!Number.isFinite(numericArea) || numericArea <= 0) {
     throw new TypeError("area must be a positive finite number");
   }
-  if (!Number.isFinite(depthInches) || depthInches <= 0) {
+  if (!Number.isFinite(numericDepth) || numericDepth <= 0) {
     throw new TypeError("depth must be a positive finite number");
   }
 
-  const cubicYards = (squareFeet * depthInches) / 324;
+  const cubicMeters =
+    normalizedUnit === "metric"
+      ? (numericArea * numericDepth) / 100
+      : ((numericArea * numericDepth) / 324) / CUBIC_METERS_TO_CUBIC_YARDS;
+  const cubicYards =
+    normalizedUnit === "metric"
+      ? cubicMeters * CUBIC_METERS_TO_CUBIC_YARDS
+      : (numericArea * numericDepth) / 324;
+  const minimumTons = cubicYards * density.minimum;
+  const maximumTons = cubicYards * density.maximum;
+
   return {
     cubicYards,
-    minimumTons: cubicYards * density.minimum,
-    maximumTons: cubicYards * density.maximum,
+    cubicMeters,
+    minimumTons,
+    maximumTons,
+    minimumTonnes: minimumTons * SHORT_TONS_TO_METRIC_TONNES,
+    maximumTonnes: maximumTons * SHORT_TONS_TO_METRIC_TONNES,
   };
 }
 
 const BaseElement = globalThis.HTMLElement ?? class {};
 
 export class YardMaterialCoverageElement extends BaseElement {
-  static observedAttributes = ["material", "area", "depth"];
+  static observedAttributes = [
+    "material",
+    "area",
+    "depth",
+    "unit",
+    "accent",
+    "materials",
+    "attribution",
+    "utm-source",
+    "utm-campaign",
+  ];
 
   connectedCallback() {
     this.render();
@@ -48,16 +110,29 @@ export class YardMaterialCoverageElement extends BaseElement {
   }
 
   render() {
-    const material = this.getAttribute("material") || "Pea gravel";
+    const availableMaterials = filterMaterials(this.getAttribute("materials"));
+    const requestedMaterial = this.getAttribute("material");
     const selectedMaterial =
-      MATERIALS.find((entry) => entry.name.toLowerCase() === material.trim().toLowerCase()) ?? MATERIALS[0];
-    const area = Number(this.getAttribute("area")) > 0 ? Number(this.getAttribute("area")) : 500;
-    const depth = Number(this.getAttribute("depth")) > 0 ? Number(this.getAttribute("depth")) : 3;
+      availableMaterials.find(
+        (entry) => normalizeMaterialName(entry.name) === normalizeMaterialName(requestedMaterial),
+      ) ?? availableMaterials[0];
+    const unit = normalizeUnit(this.getAttribute("unit"));
+    const area = Number(this.getAttribute("area")) > 0 ? Number(this.getAttribute("area")) : unit === "metric" ? 50 : 500;
+    const depth = Number(this.getAttribute("depth")) > 0 ? Number(this.getAttribute("depth")) : unit === "metric" ? 7.5 : 3;
+    const accent = sanitizeAccent(this.getAttribute("accent"));
+    const showAttribution = this.getAttribute("attribution") !== "hidden";
+    const sourceUrl = buildSourceUrl({
+      source: this.getAttribute("utm-source"),
+      campaign: this.getAttribute("utm-campaign"),
+    });
     const shadow = this.shadowRoot ?? this.attachShadow({ mode: "open" });
+    const areaUnit = unit === "metric" ? "m\u00B2" : "sq ft";
+    const depthUnit = unit === "metric" ? "cm" : "in";
 
     shadow.innerHTML = `
       <style>
         :host {
+          --ymc-accent: ${accent};
           color: #1b2420;
           display: block;
           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -107,11 +182,11 @@ export class YardMaterialCoverageElement extends BaseElement {
           padding: 8px 10px;
           width: 100%;
         }
-        input:focus, select:focus { outline: 3px solid rgba(47, 111, 134, 0.28); outline-offset: 1px; }
+        input:focus, select:focus { outline: 3px solid color-mix(in srgb, var(--ymc-accent) 28%, transparent); outline-offset: 1px; }
         .measurements { display: grid; gap: 10px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
         .result {
           background: #f3f0e8;
-          border-left: 4px solid #ab4c29;
+          border-left: 4px solid var(--ymc-accent);
           display: grid;
           gap: 10px;
           padding: 14px 15px;
@@ -151,34 +226,34 @@ export class YardMaterialCoverageElement extends BaseElement {
           <label>
             Material
             <select name="material">
-              ${MATERIALS.map(
+              ${availableMaterials.map(
                 (entry) => `<option${entry.name === selectedMaterial.name ? " selected" : ""}>${entry.name}</option>`,
               ).join("")}
             </select>
           </label>
           <div class="measurements">
             <label>
-              Area (sq ft)
-              <input name="area" type="number" min="1" step="1" inputmode="decimal" value="${area}">
+              Area (${areaUnit})
+              <input name="area" type="number" min="0.01" step="any" inputmode="decimal" value="${area}">
             </label>
             <label>
-              Depth (in)
-              <input name="depth" type="number" min="0.25" step="0.25" inputmode="decimal" value="${depth}">
+              Depth (${depthUnit})
+              <input name="depth" type="number" min="0.01" step="any" inputmode="decimal" value="${depth}">
             </label>
           </div>
           <div class="result" aria-live="polite">
             <div class="result-row">
               <span class="result-label">Material volume</span>
-              <output name="yards"></output>
+              <output name="volume"></output>
             </div>
             <div class="result-row">
               <span class="result-label">Typical weight</span>
-              <output name="tons"></output>
+              <output name="weight"></output>
             </div>
           </div>
           <p class="note">Planning estimate only. Moisture, compaction, gradation, and supplier measurements vary.</p>
         </form>
-        <footer>Source: <a href="${SOURCE_URL}" target="_blank" rel="noopener">Yard Material Tools</a></footer>
+        ${showAttribution ? `<footer>Source: <a href="${sourceUrl}" target="_blank" rel="noopener">Yard Material Tools</a></footer>` : ""}
       </section>
     `;
 
@@ -186,9 +261,12 @@ export class YardMaterialCoverageElement extends BaseElement {
     const materialInput = shadow.querySelector('[name="material"]');
     const areaInput = shadow.querySelector('[name="area"]');
     const depthInput = shadow.querySelector('[name="depth"]');
-    const yardsOutput = shadow.querySelector('[name="yards"]');
-    const tonsOutput = shadow.querySelector('[name="tons"]');
-    const numberFormat = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const volumeOutput = shadow.querySelector('[name="volume"]');
+    const weightOutput = shadow.querySelector('[name="weight"]');
+    const numberFormat = new Intl.NumberFormat("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
 
     const update = () => {
       try {
@@ -196,12 +274,19 @@ export class YardMaterialCoverageElement extends BaseElement {
           material: materialInput.value,
           area: areaInput.value,
           depth: depthInput.value,
+          unit,
         });
-        yardsOutput.textContent = `${numberFormat.format(estimate.cubicYards)} yd\u00B3`;
-        tonsOutput.textContent = `${numberFormat.format(estimate.minimumTons)}\u2013${numberFormat.format(estimate.maximumTons)} tons`;
+        volumeOutput.textContent =
+          unit === "metric"
+            ? `${numberFormat.format(estimate.cubicMeters)} m\u00B3`
+            : `${numberFormat.format(estimate.cubicYards)} yd\u00B3`;
+        weightOutput.textContent =
+          unit === "metric"
+            ? `${numberFormat.format(estimate.minimumTonnes)}\u2013${numberFormat.format(estimate.maximumTonnes)} tonnes`
+            : `${numberFormat.format(estimate.minimumTons)}\u2013${numberFormat.format(estimate.maximumTons)} tons`;
       } catch {
-        yardsOutput.textContent = "Enter valid values";
-        tonsOutput.textContent = "-";
+        volumeOutput.textContent = "Enter valid values";
+        weightOutput.textContent = "-";
       }
     };
 

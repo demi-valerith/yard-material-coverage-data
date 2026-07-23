@@ -38,7 +38,7 @@
         ],
         "isBasedOn": "https://yardmaterialtools.com/material-coverage-chart",
         "license": "https://creativecommons.org/licenses/by/4.0/",
-        "dateModified": "2026-07-15",
+        "dateModified": "2026-07-23",
         "distribution": [
           { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://demi-valerith.github.io/yard-material-coverage-data/coverage.json" },
           { "@type": "DataDownload", "encodingFormat": "text/csv", "contentUrl": "https://demi-valerith.github.io/yard-material-coverage-data/coverage.csv" },
@@ -106,9 +106,18 @@
       <p class="note">Planning estimates only. Supplier density, moisture, compaction, gradation, and bag fill vary. Confirm local material specifications before ordering.</p>
 
       <h2>Interactive coverage widget</h2>
-      <p>Use the same open density ranges in a compact calculator that can be embedded on another website.</p>
+      <p>Use the same open density ranges in a compact calculator that can be embedded on another website. Widget version 1.3.0 supports imperial or metric input, material filtering, and color configuration.</p>
       <script type="module" src="widget.js"></script>
-      <yard-material-coverage material="Pea gravel" area="500" depth="3"></yard-material-coverage>
+      <yard-material-coverage
+        material="Pea gravel"
+        materials="Pea gravel,Crushed stone,River rock"
+        area="500"
+        depth="3"
+        unit="imperial"
+        accent="#ab4c29"
+        utm-source="github_pages"
+        utm-campaign="coverage_widget"
+      ></yard-material-coverage>
     </main>
   </body>
 </html>

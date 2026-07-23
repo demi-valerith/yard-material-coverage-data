@@ -1,0 +1,37 @@
+---
+interface Props {
+  material?: string;
+  materials?: string;
+  area?: number;
+  depth?: number;
+  unit?: "imperial" | "metric";
+  accent?: string;
+  attribution?: boolean;
+}
+
+const {
+  material = "Pea gravel",
+  materials = "Pea gravel,Crushed stone,River rock",
+  area = 500,
+  depth = 3,
+  unit = "imperial",
+  accent = "#ab4c29",
+  attribution = true,
+} = Astro.props;
+---
+
+<script>
+  import "@demi-valerith/yard-material-coverage-data/widget";
+</script>
+
+<yard-material-coverage
+  material={material}
+  materials={materials}
+  area={area}
+  depth={depth}
+  unit={unit}
+  accent={accent}
+  attribution={attribution ? "visible" : "hidden"}
+  utm-source="astro_example"
+  utm-campaign="coverage_widget"
+/>
